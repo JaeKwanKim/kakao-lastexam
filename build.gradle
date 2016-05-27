@@ -64,6 +64,7 @@ dependencies {
 //    compile group: 'org.codehaus.castor', name: 'castor-core', version: castorVersion
 //    compile group: 'org.codehaus.castor', name: 'castor-xml', version: castorVersion
 //    runtime group: 'ch.qos.logback', name: 'logback-classic', version:logbackVersion
+    compile "org.projectlombok:lombok:1.16.8"
 
 }
 
