@@ -2,33 +2,42 @@ group 'kr.kakao.lastExam'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext {
-        springBootVersion = '1.3.5.RELEASE'
-    }
     repositories {
         jcenter()
+        mavenCentral()
     }
-
     dependencies {
-//        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.4'
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:1.3.5.RELEASE"
+        classpath 'org.springframework:springloaded:1.2.4.RELEASE'
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'war'
-//apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'application'
 apply plugin: 'spring-boot'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+jar {
+    baseName = 'recommend'
+    version = '0.0.1-SNAPSHOT'
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
+
 ext {
     servletVersion = '3.1.0'
-    slf4jVersion = '1.7.21'
-    logbackVersion = '1.1.7'
-    jacksonVersion = '2.7.4'
-    castorVersion = '1.3.3'
+//    slf4jVersion = '1.7.21'
+//    logbackVersion = '1.1.7'
+//    jacksonVersion = '2.7.4'
+//    castorVersion = '1.3.3'
 }
 
 repositories {
@@ -41,10 +50,6 @@ repositories {
 //}
 
 dependencies {
-//    def tomcatVersion = '8.0.33'
-//    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-//            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
-//            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 //    compile('org.springframework.boot:spring-boot-starter-data-jpa')
 //    compile('org.springframework.boot:spring-boot-starter-redis')
 //    compile('org.springframework.boot:spring-boot-starter-jdbc')
@@ -65,13 +70,4 @@ dependencies {
 bootRun {
     addResources = true
 }
-
-//tomcat {
-//    httpPort = 8080
-//    contextPath = '/'
-//}
-//
-//tomcatRun {
-//    reloadable = true
-//}
 
