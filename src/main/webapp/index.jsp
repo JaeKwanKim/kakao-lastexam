@@ -11,6 +11,7 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <h1>Test Spring-Boot</h1>
+  <h3>$String$</h3>
   </body>
 </html>
