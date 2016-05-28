@@ -1,0 +1,156 @@
+textarea.input-lg{
+  text-align:center;
+  font-size:30px;
+}
+
+div#header{
+  text-align:center;
+  margin-top:10px;
+}
+
+hr{
+  margin:5px;
+  margin-bottom:15px;
+}
+
+div.thumbnail{
+  width:70px;
+  height:70px;
+}
+
+tr, td{
+  vertical-align:middle;
+  text-align:left;
+  font-size:15px;
+}
+
+td#comment{
+  font-size:13px;
+}
+
+div.media-body{
+  text-align:left;
+}
+
+td#name{
+  width:80px;
+}
+
+td.name{
+  width:80px;
+}
+
+td.comment{
+  width:600px;
+}
+
+td#recommend{
+  width:60px;
+}
+
+td#opposite{
+  width:60px;
+}
+
+td.delete{
+  width:60px;
+}
+
+td.time-check{
+  width:60px;
+}
+
+td.image{
+  width:50px;
+  height:50px;
+}
+
+tbody{
+  border-bottom-style:inset;
+}
+
+div#image-call.col-sm-4.input-column{
+  display:table-column;
+  table-layout:auto;
+  width:250px;
+}
+
+img#profile-image{
+  float:left;
+  display:block;
+}
+
+button#image-search.btn.btn-default{
+  float:right;
+}
+
+body{
+  position:relative;
+  align-content:center;
+}
+
+div#comment-register-button{
+  margin:auto;
+  text-align:left;
+}
+
+label#comment-register{
+  font-size:30px;
+  margin-left:100px;
+}
+
+textarea#comment-register-box{
+  width:300px;
+  height:200px;
+}
+
+button.btn.btn-default{
+  margin-left:20px;
+  margin-right:20px;
+}
+
+h2.text-center{
+  text-align:center;
+}
+
+input#password-input.form-control{
+  float:none;
+}
+
+input#login-name-input.form-control{
+  float:none;
+}
+
+form#login-form.bootstrap-form-with-validation{
+  width:250px;
+  margin-left:20px;
+}
+
+div.comment-div{
+  margin-left:20px;
+}
+
+div.commnet-div{
+  margin-left:20px;
+}
+
+div#comment-register-button.commnet-div{
+  margin-left:20px;
+}
+
+div#login-button{
+  float:left;
+}
+
+button.btn.btn-default.login-button{
+  float:left;
+}
+
+div#login-div-button{
+}
+
+button.btn.btn-default.comment-button{
+  margin-left:40px;
+  margin-right:40px;
+}
+

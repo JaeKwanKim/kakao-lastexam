@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class AppController {
-    @RequestMapping("/")
-    String rootRoute() {
-        return "Hi, My Name is SpringBoot-Reloaded!!";
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String rootRoute() {
+        return "index";
     }
 
     @RequestMapping(value = "/test/{name}", method = RequestMethod.GET)

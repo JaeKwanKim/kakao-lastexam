@@ -9,11 +9,11 @@ import javax.persistence.*;
  */
 @Data
 @Entity
-@Table(name = "userInfo")
-public class UserData {
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
     private String name;
     private String password;
+    private String description;
+    private String image;
 }
