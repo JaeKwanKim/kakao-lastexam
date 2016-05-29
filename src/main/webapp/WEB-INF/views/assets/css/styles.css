@@ -32,10 +32,6 @@ div.media-body{
   text-align:left;
 }
 
-td#name{
-  width:80px;
-}
-
 td.name{
   width:80px;
 }
@@ -44,11 +40,11 @@ td.comment{
   width:600px;
 }
 
-td#recommend{
+td.recommend{
   width:60px;
 }
 
-td#opposite{
+td.opposite{
   width:60px;
 }
 
