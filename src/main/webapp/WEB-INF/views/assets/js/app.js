@@ -12,6 +12,9 @@ function loginOpen(){
 	window.open(popUrl,"",popOption);
 }
 
+$(".comment-delete-class").on("click", function() {
+	location.href='/';
+});
 
 $(window).load(function(event) {
 	var userComparable = $("#userComparable").val();

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8"/>
@@ -8,19 +8,27 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/Pretty-Registration-Form.css"/>
     <link rel="stylesheet" href="assets/css/styles.css"/>
+    <!--<script>-->
+        <!--onload = function () {-->
+            <!--if(user.userId != null) self.close();-->
+        <!--}-->
+    <!--</script>-->
 </head>
 
 <body>
     <div class="comment-div">
         <label id="comment-register"><strong>댓글 등록</strong> </label>
     </div>
-    <div class="comment-div">
-        <textarea id="comment-register-box"></textarea>
-    </div>
-    <div id="context-register-button" class="commnet-div">
-    <button class="btn btn-default comment-button" type="submit">저 장 </button>
-    <button class="btn btn-default comment-button" type="button" onclick="self.close();">취 소 </button>
-</div>
+    <form id="comment-write-form" th:action="@{comments}" method="post">
+        <div class="comment-div">
+            <input type="hidden" id="write-id" name="writeId" th:value="${user.userId}"/>
+            <textarea id="comment-register-box" name="context"></textarea>
+        </div>
+        <div id="context-register-button" class="commnet-div">
+            <button class="btn btn-default comment-button" type="submit">저 장 </button>
+            <button class="btn btn-default comment-button" type="button" onclick="self.close();">취 소 </button>
+        </div>
+    </form>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

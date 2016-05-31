@@ -13,7 +13,7 @@
     <input type="hidden" id="userComparable" th:value="${user.userId}"/>
     <ul class="nav nav-tabs">
         <li id="nav-login-display" th:text="${user.name}+'('+${user.description}+')'"></li>
-        <li id="nav-login-profile-change" ><a href="#">프로필수정 </a></li>
+        <li id="nav-login-profile-change" ><a href="/register">프로필수정 </a></li>
         <li id="nav-login-logout" ><a href="/logout">로그아웃 </a></li>
         <li id="nav-login"><a href="javascript:loginOpen();">로그인 </a></li>
         <li><a href="javascript:writeOpen();"> 글쓰기</a></li>
@@ -22,6 +22,7 @@
         <textarea name="comment_main" rows="1" readonly="readonly" class="input-lg"> 댓 글 시 스 템 </textarea>
     </div>
     <hr/>
+
     <div class="rowmapper">
         <div>
             <table class="table">
@@ -38,42 +39,17 @@
                         <td class="opposite">
                             <button class="btn btn-default" type="button" th:text="${'추천('+com.opposite+')'}">반대 </button>
                         </td>
-                        <td class="delete">
-                            <form th:action="@{/comment/${com.seq_num}}" method="delete">
-                                <button class="btn btn-default" type="submit">삭제 </button>
+                        <td class="delete" th:with="condition = ${user.userId == com.user.userId}">
+                            <form action="#" th:action="@{/comments/__${com.seq_num}__}" th:method="GET">
+                                <button class="btn btn-default comment-delete-class" type="submit" th:if="${condition}">삭제</button>
                             </form>
                         </td>
-                        <td class="time-check" th:text="${com.create_date}">time </td>
+                        <td class="time-check" id="dateTime" th:text="${com.currunt_time}">time </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <!--<div class="rowmapper">-->
-    <!--<div>-->
-        <!--<table class="table">-->
-            <!--<tbody>-->
-                <!--<tr class="comment_table">-->
-                    <!--<td class="image"><img src="assets/img/1.jpg" width="50px" height="50px" /></td>-->
-                    <!--<td class="name">-->
-                        <!--<label>허윤호 </label>-->
-                    <!--</td>-->
-                    <!--<td class="context">ㅁ미ㅏㅓㅇㄹㅣㅓㅓㅁㅣㅏㄴㅓ </td>-->
-                    <!--<td class="recommend">-->
-                        <!--<button class="btn btn-default" type="button">추천 </button>-->
-                    <!--</td>-->
-                    <!--<td class="opposite">-->
-                        <!--<button class="btn btn-default" type="button">반대 </button>-->
-                    <!--</td>-->
-                    <!--<td class="delete">-->
-                        <!--<button class="btn btn-default" type="button">삭제 </button>-->
-                    <!--</td>-->
-                    <!--<td class="time-check">time </td>-->
-                <!--</tr>-->
-            <!--</tbody>-->
-        <!--</table>-->
-    <!--</div>-->
-<!--</div>-->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/app.js"></script>

@@ -99,7 +99,7 @@ public class CommentTests {
 	}
 
 	private void assertTo(Comment comment, Comment testComment) {
-		assertThat(comment.getUserId(), is(testComment.getUserId()));
+		assertThat(comment.getWriteId(), is(testComment.getWriteId()));
 		assertThat(comment.getContext(), is(testComment.getContext()));
 	}
 

@@ -17,13 +17,15 @@ import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by JKKim on 2016. 5. 27..
  */
 @Controller
-@SessionAttributes(names = {"user","comments"})
+@SessionAttributes(names = "user")
 public class AppController {
     private final static Logger logger = LoggerFactory.getLogger(AppController.class);
 
@@ -40,10 +42,22 @@ public class AppController {
 
     @ModelAttribute("comments")
     public List<Comment> comments() {
-        return commentRepository.findAll();
+        List<Comment> list = commentRepository.findAll();
+        Collections.reverse(list);
+        Date crrentDate = new Date();
+        for(int i = 0; i < list.size(); i++) {
+            Date date = list.get(i).getCreate_date();
+            long value = (crrentDate.getTime() - date.getTime())/1000;
+            long diffDays = value / (24 * 60 * 60);
+            if(diffDays >= 1) list.get(i).setCurrunt_time(diffDays+"일");
+            else if(value < 60) list.get(i).setCurrunt_time((6-value) + "초");
+            else if(value < 3600) list.get(i).setCurrunt_time((60 - (value/60)) + "분");
+            else list.get(i).setCurrunt_time((24 - (value/3600)) + "시간");
+        }
+        return list;
     }
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/")
     public ModelAndView index(@ModelAttribute User user, @ModelAttribute(value = "comments") List<Comment> comments, Model model) {
         ModelAndView modelAndView = new ModelAndView();
 //        modelAndView.addObject("user", convertObjectToJson(user));
@@ -73,16 +87,13 @@ public class AppController {
         try(PrintWriter writer = response.getWriter()) {
             User user = userRepository.getOne(id);
             if(password.equals(user.getPassword())) {
-//                ObjectMapper mapper = new ObjectMapper();
                 model.addAttribute("user", user);
                 writer.println("<script>window.opener.location.reload(); self.close(); </script>");
-//                return model;
             } else {
                 writer.println("<script>alert('Password Incorrect!! Rewrite that.'); location.href='/login';</script>");
             }
         } catch (EntityNotFoundException e) {
         }
-//        return null;
     }
 
     @RequestMapping("/logout")
@@ -91,20 +102,50 @@ public class AppController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/register")
+    @RequestMapping(value = "/comments", method = RequestMethod.POST)
+    public void writeComment(@RequestParam String writeId, @RequestParam String context,
+                             HttpServletResponse response) throws IOException {
+        try(PrintWriter writer = response.getWriter()) {
+            Comment comment = new Comment(writeId, context);
+            commentRepository.saveAndFlush(comment);
+            writer.println("<script>window.opener.location.reload(); self.close(); </script>");
+        } catch (EntityNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
         return "register";
     }
 
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String getRegister(User user) {
+        userRepository.save(user);
+        return "redirect:/";
+    }
+
     @RequestMapping(value = "/popup")
-    public String popup() {
+    public String popup(@ModelAttribute User user, HttpServletResponse response) {
+        if(user.getUserId() == null) {
+            try(PrintWriter writer = response.getWriter()) {
+                writer.println("<script>alert('First. Register That'); self.close(); window.opener.location.href='/register';</script>");
+                return null;
+            } catch (EntityNotFoundException e){
+                e.printStackTrace();
+            }catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
         return "popup";
     }
 
-    @RequestMapping(value = "/test/{name}")
-    public String test1(@PathVariable String name, Model model) {
-        model.addAttribute(name);
-        return "/hello";
+    @RequestMapping(value = "comments/{seqNum}", method = {RequestMethod.GET})
+    public String delete(@PathVariable int seqNum) {
+        commentRepository.delete(seqNum);
+        return "redirect:/";
     }
 
 //    public static String convertObjectToJson(Object obj) {
@@ -119,7 +160,7 @@ public class AppController {
 
 //    private ModelMap convertObject(User user) {
 //        ModelMap modelMap = new ModelMap();
-//        modelMap.addAttribute("userId", user.getUserId());
+//        modelMap.addAttribute("writeId", user.getUserId());
 //        modelMap.addAttribute("password", user.getPassword());
 //        modelMap.addAttribute("name", user.getName());
 //        modelMap.addAttribute("description", user.getDescription());

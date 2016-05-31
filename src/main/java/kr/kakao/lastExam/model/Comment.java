@@ -13,19 +13,22 @@ import java.util.Date;
  */
 @Entity
 public class Comment implements Serializable{
+    private static final long serialVersionUID = 7170599505179953251L;
     @Id
     @GeneratedValue
     private Integer seq_num;
     @NotNull
-    private String userId;
+    private String writeId;
     private String context;
     private Integer recommend;
     private Integer opposite;
     @CreatedDate
     private Date create_date;
+    private String currunt_time;
     @ManyToOne
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "writeId", insertable = false, updatable = false)
     private User user;
+
 
     public Integer getSeq_num() {
         return seq_num;
@@ -35,12 +38,12 @@ public class Comment implements Serializable{
         this.seq_num = seq_num;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getWriteId() {
+        return writeId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setWriteId(String writeId) {
+        this.writeId = writeId;
     }
 
     public String getContext() {
@@ -84,11 +87,19 @@ public class Comment implements Serializable{
         this.create_date = create_date;
     }
 
+    public String getCurrunt_time() {
+        return currunt_time;
+    }
+
+    public void setCurrunt_time(String current_time) {
+        this.currunt_time = current_time;
+    }
+
     public Comment() {
     }
 
-    public Comment(String userId, String context) {
-        this.userId = userId;
+    public Comment(String writeId, String context) {
+        this.writeId = writeId;
         this.context = context;
         this.recommend = 0;
         this.opposite = 0;

@@ -17,7 +17,7 @@ public class User implements Serializable {
     private String description;
     private String image;
     @OneToMany(mappedBy = "user")
-//    @JoinColumn(name = "userId", referencedColumnName = "userId")
+//    @JoinColumn(referencedColumnName = "userId")
     private List<Comment> comments;
 
     public String getUserId() {
