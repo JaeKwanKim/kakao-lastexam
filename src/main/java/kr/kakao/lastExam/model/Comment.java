@@ -23,8 +23,8 @@ public class Comment implements Serializable{
     private Integer opposite;
     @CreatedDate
     private Date create_date;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", insertable = false, updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "userId")
     private User user;
 
     public Integer getSeq_num() {

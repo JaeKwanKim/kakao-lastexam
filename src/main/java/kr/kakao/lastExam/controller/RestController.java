@@ -2,6 +2,8 @@ package kr.kakao.lastExam.controller;
 
 import kr.kakao.lastExam.dao.CommentRepository;
 import kr.kakao.lastExam.model.Comment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
+    private final static Logger logger = LoggerFactory.getLogger(AppController.class);
 
     @Autowired
     private CommentRepository commentRepository;

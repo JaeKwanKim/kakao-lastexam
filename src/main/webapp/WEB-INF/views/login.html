@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8"/>
@@ -8,29 +8,33 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/css/styles.css"/>
     <link rel="stylesheet" href="assets/css/Pretty-Registration-Form.css"/>
+    <script>
+        onload = function (user) {
+            if(user.id != null) self.close();
+        }
+    </script>
 </head>
 
 <body>
-    <form userId="login-form" class="bootstrap-form-with-validation">
-    <h2 class="text-center">로그인 </h2>
-    <div class="form-group">
-        <input type="text" placeholder="ID" autofocus="autofocus" required="required" class="form-control" userId="login-name-input" />
-    </div>
-    <div class="form-group">
-        <input type="password" placeholder="Password" required="required" class="form-control" userId="password-input" />
-    </div>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" /> Remember me</label>
-    </div>
-    <div userId="login-div-button">
-        <button class="btn btn-default btn-sm login-button" type="submit">로그인 </button>
-        <button class="btn btn-default btn-sm loin-button" type="button" onclick="opener.document.location.href='register';self.close();">회원가입 </button>
-    </div>
-</form>
+    <form id="login-form" class="bootstrap-form-with-validation" th:action="@{/login}" method="post">
+        <h2 class="text-center">로그인 </h2>
+        <div class="form-group">
+            <input type="text" placeholder="ID" autofocus="autofocus" required="required" class="form-control" name="login-id" />
+        </div>
+        <div class="form-group">
+            <input type="password" placeholder="Password" required="required" class="form-control" name="login-password" />
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" /> Remember me</label>
+        </div>
+        <div id="login-div-button">
+            <button class="btn btn-default btn-sm login-button" type="submit">로그인 </button>
+            <button class="btn btn-default btn-sm loin-button" type="button" onclick="opener.document.location.href='register';self.close();">회원가입 </button>
+        </div>
+    </form>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/app.js"></script>
 </body>
 
 </html>

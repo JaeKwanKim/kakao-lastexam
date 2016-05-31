@@ -16,8 +16,8 @@ public class User implements Serializable {
     private String name;
     private String description;
     private String image;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//    @JoinColumn(name = "userId")
+    @OneToMany(mappedBy = "user")
+//    @JoinColumn(name = "userId", referencedColumnName = "userId")
     private List<Comment> comments;
 
     public String getUserId() {
