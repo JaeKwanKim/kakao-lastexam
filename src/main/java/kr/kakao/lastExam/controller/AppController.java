@@ -7,6 +7,8 @@ import kr.kakao.lastExam.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +27,7 @@ import java.util.List;
  * Created by JKKim on 2016. 5. 27..
  */
 @Controller
-@SessionAttributes(names = "user")
+@SessionAttributes(names = {"user"})
 public class AppController {
     private final static Logger logger = LoggerFactory.getLogger(AppController.class);
 
@@ -44,16 +46,7 @@ public class AppController {
     public List<Comment> comments() {
         List<Comment> list = commentRepository.findAll();
         Collections.reverse(list);
-        Date crrentDate = new Date();
-        for(int i = 0; i < list.size(); i++) {
-            Date date = list.get(i).getCreate_date();
-            long value = (crrentDate.getTime() - date.getTime())/1000;
-            long diffDays = value / (24 * 60 * 60);
-            if(diffDays >= 1) list.get(i).setCurrunt_time(diffDays+"일");
-            else if(value < 60) list.get(i).setCurrunt_time((6-value) + "초");
-            else if(value < 3600) list.get(i).setCurrunt_time((60 - (value/60)) + "분");
-            else list.get(i).setCurrunt_time((24 - (value/3600)) + "시간");
-        }
+        DateTimeOver(list);
         return list;
     }
 
@@ -148,15 +141,37 @@ public class AppController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/comments/like", method = RequestMethod.GET)
+    public ResponseEntity<?> commentLike(@RequestParam(name = "seqNum") int seqNum) {
+        Comment commentLike = commentRepository.getOne(seqNum);
+        if(commentLike.getRecommend() == null) commentLike.setRecommend(1);
+        else commentLike.setRecommend(commentLike.getRecommend() + 1);
+        commentRepository.save(commentLike);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/comments/unlike", method = RequestMethod.GET)
+    public ResponseEntity<?> commentUnlike(@RequestParam(name = "seqNum") int seqNum) {
+        Comment commentUnlike = commentRepository.getOne(seqNum);
+        if(commentUnlike.getOpposite() == null) commentUnlike.setOpposite(1);
+        else commentUnlike.setOpposite(commentUnlike.getOpposite() + 1);
+        commentRepository.save(commentUnlike);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private void DateTimeOver(List<Comment> list) {
+        Date crrentDate = new Date();
+        for(int i = 0; i < list.size(); i++) {
+            Date date = list.get(i).getCreate_date();
+            long value = (crrentDate.getTime() - date.getTime())/1000;
+            long diffDays = value / (24 * 60 * 60);
+            if(diffDays >= 1) list.get(i).setCurrunt_time(diffDays+"일");
+            else if(value < 60) list.get(i).setCurrunt_time((6-value) + "초");
+            else if(value < 3600) list.get(i).setCurrunt_time((60 - (value/60)) + "분");
+            else list.get(i).setCurrunt_time((24 - (value/3600)) + "시간");
+        }
+    }
 //    public static String convertObjectToJson(Object obj) {
-//        String result = "";
-//        try {
-//            result = om.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
-//        } catch (JsonProcessingException e) {
-//            logger.error("Error In JSON conversion : {}", e);
-//        }
-//        return result;
-//    }
 
 //    private ModelMap convertObject(User user) {
 //        ModelMap modelMap = new ModelMap();

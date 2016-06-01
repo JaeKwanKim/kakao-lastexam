@@ -32,3 +32,55 @@ $(window).load(function(event) {
 		$("#nav-login").css("display", " ");
 	}
 });
+
+function retrieveLike(seqNum) {
+	event.preventDefault();
+	var userComparable = $("#userComparable").val();
+	if (userComparable == "") alert("After Login. Writing...");
+	else {
+		$.ajax({
+			url: "comments/like",
+			type: "GET",
+			data: {"seqNum": seqNum},
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+			success: function () {
+				location.href = '/';
+				console.log("success!!!");
+			},
+			error: function () {
+				console.log("error.........")
+			}
+		});
+	}
+};
+
+function retrieveUnlike(seqNum) {
+	event.preventDefault();
+	var userComparable = $("#userComparable").val();
+	if (userComparable == "") {
+		alert("After Login. Writing...");
+	} else {
+		$.ajax({
+			url: "comments/unlike",
+			type: "GET",
+			data: {"seqNum": seqNum},
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader("Accept", "application/json");
+				xhr.setRequestHeader("Content-Type", "application/json");
+			},
+			success: function () {
+				location.href = '/';
+				console.log("success!!!");
+			},
+			error: function () {
+				console.log("error.........");
+				// Handle  error
+				// ...
+			}
+		});
+	}
+
+};

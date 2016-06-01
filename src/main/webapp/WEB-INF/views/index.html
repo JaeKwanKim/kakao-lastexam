@@ -33,11 +33,14 @@
                             <label th:text="${com.user.name}">김재관 </label>
                         </td>
                         <td class="context" th:text="${com.context}">댓글 입력 장소입니다.</td>
+                            <!--<input type="hidden" id="comment-writeId" th:text="${com.seq_num}" />-->
                         <td class="recommend">
-                            <button class="btn btn-default" type="button" th:text="${'추천('+com.recommend+')'}">추천 </button>
+                            <button class="btn btn-default recommend-button" type="button"
+                                    th:text="${'추천('+com.recommend+')'}" th:onclick="'javacript:retrieveLike('+${com.seq_num}+')'">추천 </button>
                         </td>
                         <td class="opposite">
-                            <button class="btn btn-default" type="button" th:text="${'추천('+com.opposite+')'}">반대 </button>
+                            <button class="btn btn-default opposite-button" type="button"
+                                    th:text="${'반대('+com.opposite+')'}" th:onclick="'javacript:retrieveUnlike('+${com.seq_num}+')'">반대 </button>
                         </td>
                         <td class="delete" th:with="condition = ${user.userId == com.user.userId}">
                             <form action="#" th:action="@{/comments/__${com.seq_num}__}" th:method="GET">
