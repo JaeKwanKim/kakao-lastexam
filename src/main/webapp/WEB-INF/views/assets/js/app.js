@@ -33,6 +33,25 @@ $(window).load(function(event) {
 	}
 });
 
+function changePageNum(pageNum) {
+	console.log(pageNum);
+	$.ajax({
+		url: "pageNum",
+		type: "GET",
+		data: {"pageNum": pageNum},
+		// beforeSend: function(xhr) {
+		// 	xhr.setRequestHeader("Accept", "application/json");
+		// 	xhr.setRequestHeader("Content-Type", "application/json");
+		// },
+		success: function () {
+			location.href = '/?page='+pageNum;
+			console.log("success!!!");
+		},
+		error: function () {
+			console.log("error.........")
+		}
+	});
+}
 function retrieveLike(seqNum) {
 	event.preventDefault();
 	var userComparable = $("#userComparable").val();

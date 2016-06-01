@@ -7,6 +7,10 @@ import kr.kakao.lastExam.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,7 +23,6 @@ import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +39,15 @@ public class AppController {
     @Autowired
     private UserRepository userRepository;
 //    private static final ObjectMapper om = new ObjectMapper();
+    private int pageNum;
+
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
 
     @ModelAttribute("user")
     public User user() {
@@ -43,15 +55,18 @@ public class AppController {
     }
 
     @ModelAttribute("comments")
-    public List<Comment> comments() {
-        List<Comment> list = commentRepository.findAll();
-        Collections.reverse(list);
-        DateTimeOver(list);
-        return list;
+    public Page<Comment> comments(@PageableDefault(size = 7, direction = Sort.Direction.DESC, sort = "seqNum") Pageable pageable) {
+        if(pageNum < 1 || pageNum > 1000 ) pageNum = 0;
+        Page<Comment> commentList = commentRepository.findAll(pageable);
+        if(pageNum > commentList.getTotalPages()) pageNum = 0;
+//        List<Comment> commentList = commentRepository.findAll(new Sort(Sort.Direction.DESC,"seqNum"));
+//        Collections.reverse(commentList);
+//        DateTimeOver(commentList);
+        return commentList;
     }
 
     @RequestMapping(value = "/")
-    public ModelAndView index(@ModelAttribute User user, @ModelAttribute(value = "comments") List<Comment> comments, Model model) {
+    public ModelAndView index(@ModelAttribute User user, @ModelAttribute(value = "comments") Page<Comment> comments) {
         ModelAndView modelAndView = new ModelAndView();
 //        modelAndView.addObject("user", convertObjectToJson(user));
 //        if (!modelAndView.isEmpty()) {
@@ -59,11 +74,12 @@ public class AppController {
 //        }
 //        modelAndView.addAllObjects(convertObject(user));
         System.out.println(user.getName() + "(" +user.getDescription() + ")");
-        System.out.println(comments.get(0).getContext());
+        DateTimeOver(comments.getContent());
+//        System.out.println(comments.get(0).getContext());
         modelAndView.addObject("comment", comments);
         modelAndView.addObject("user", user);
         modelAndView.setViewName("index");
-        model.addAttribute("hello", "hello");
+        modelAndView.addObject("pageNum", comments.getTotalPages());
 //        model.addAllAttributes(convertObject(user));
         return modelAndView;
     }
@@ -159,6 +175,12 @@ public class AppController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/pageNum", method = RequestMethod.GET)
+    public ResponseEntity<?> pageNum(@RequestParam(name = "pageNum") int pageNum) {
+        setPageNum(pageNum);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     private void DateTimeOver(List<Comment> list) {
         Date crrentDate = new Date();
         for(int i = 0; i < list.size(); i++) {
@@ -166,10 +188,11 @@ public class AppController {
             long value = (crrentDate.getTime() - date.getTime())/1000;
             long diffDays = value / (24 * 60 * 60);
             if(diffDays >= 1) list.get(i).setCurrunt_time(diffDays+"일");
-            else if(value < 60) list.get(i).setCurrunt_time((6-value) + "초");
-            else if(value < 3600) list.get(i).setCurrunt_time((60 - (value/60)) + "분");
-            else list.get(i).setCurrunt_time((24 - (value/3600)) + "시간");
+            else if (value > 3600) list.get(i).setCurrunt_time((value/3600) + "시간");
+            else if(value > 60) list.get(i).setCurrunt_time((value/60) + "분");
+            else list.get(i).setCurrunt_time(value + "초");
         }
+        commentRepository.save(list);
     }
 //    public static String convertObjectToJson(Object obj) {
 

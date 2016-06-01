@@ -16,7 +16,8 @@ public class Comment implements Serializable{
     private static final long serialVersionUID = 7170599505179953251L;
     @Id
     @GeneratedValue
-    private Integer seq_num;
+    @Column(name = "seq_num")
+    private Integer seqNum;
     @NotNull
     private String writeId;
     private String context;
@@ -30,12 +31,12 @@ public class Comment implements Serializable{
     private User user;
 
 
-    public Integer getSeq_num() {
-        return seq_num;
+    public Integer getSeqNum() {
+        return seqNum;
     }
 
-    public void setSeq_num(Integer seq_num) {
-        this.seq_num = seq_num;
+    public void setSeqNum(Integer seqNum) {
+        this.seqNum = seqNum;
     }
 
     public String getWriteId() {

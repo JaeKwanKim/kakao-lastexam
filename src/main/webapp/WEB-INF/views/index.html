@@ -33,17 +33,17 @@
                             <label th:text="${com.user.name}">김재관 </label>
                         </td>
                         <td class="context" th:text="${com.context}">댓글 입력 장소입니다.</td>
-                            <!--<input type="hidden" id="comment-writeId" th:text="${com.seq_num}" />-->
+                            <!--<input type="hidden" id="comment-writeId" th:text="${com.seqNum}" />-->
                         <td class="recommend">
                             <button class="btn btn-default recommend-button" type="button"
-                                    th:text="${'추천('+com.recommend+')'}" th:onclick="'javacript:retrieveLike('+${com.seq_num}+')'">추천 </button>
+                                    th:text="${'추천('+com.recommend+')'}" th:onclick="'javacript:retrieveLike('+${com.seqNum}+')'">추천 </button>
                         </td>
                         <td class="opposite">
                             <button class="btn btn-default opposite-button" type="button"
-                                    th:text="${'반대('+com.opposite+')'}" th:onclick="'javacript:retrieveUnlike('+${com.seq_num}+')'">반대 </button>
+                                    th:text="${'반대('+com.opposite+')'}" th:onclick="'javacript:retrieveUnlike('+${com.seqNum}+')'">반대 </button>
                         </td>
                         <td class="delete" th:with="condition = ${user.userId == com.user.userId}">
-                            <form action="#" th:action="@{/comments/__${com.seq_num}__}" th:method="GET">
+                            <form action="#" th:action="@{/comments/__${com.seqNum}__}" th:method="GET">
                                 <button class="btn btn-default comment-delete-class" type="submit" th:if="${condition}">삭제</button>
                             </form>
                         </td>
@@ -53,6 +53,25 @@
             </table>
         </div>
     </div>
+    <nav th:align="center">
+        <ul class="pagination">
+            <li><a aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+            <!--<option th:each="i : ${#numbers.sequence(1,__${pageNum}__)}">-->
+                <!--<li><a th:text="${i}" th:onclick="'javacript:changePageNum('+${i}+')'"></a></li>-->
+            <!--</option>-->
+            <li><a th:onclick="'javacript:changePageNum(0)'">1</a></li>
+            <li><a th:onclick="'javacript:changePageNum(1)'">2</a></li>
+            <li><a th:onclick="'javacript:changePageNum(2)'">3</a></li>
+            <li><a th:onclick="'javacript:changePageNum(3)'">4</a></li>
+            <li><a th:onclick="'javacript:changePageNum(4)'">5</a></li>
+            <li><a th:onclick="'javacript:changePageNum(5)'">6</a></li>
+            <li><a th:onclick="'javacript:changePageNum(6)'">7</a></li>
+            <li><a th:onclick="'javacript:changePageNum(7)'">8</a></li>
+            <li><a th:onclick="'javacript:changePageNum(8)'">9</a></li>
+            <li><a th:onclick="'javacript:changePageNum(9)'">10</a></li>
+            <li><a aria-label="Next"><span aria-hidden="true">»</span></a></li>
+        </ul>
+    </nav>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/app.js"></script>
