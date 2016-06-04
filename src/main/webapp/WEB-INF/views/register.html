@@ -62,8 +62,9 @@
                 <div class="col-sm-4 label-column">
                     <label class="control-label">프로필 이미지 </label>
                 </div>
-                <div class="col-sm-4 input-column" id="image-call"><img th:src="${user.image}" width="100px" height="100px" id="profile-image" />
-                    <input type="file" id="image-search" name="image"  />
+                <div class="col-sm-4 input-column filebox preview-image" id="image-call"><img th:src="${user.image}" width="100px" height="100px" id="profile-image" />
+                    <!--<input class="upload-name" value="파일선택" disabled="disabled" />-->
+                    <input type="file" class="upload-hidden" id="image" name="image" th:value="${user.image}"/>
                 </div>
             </div>
             <div class="checkbox" align="center">

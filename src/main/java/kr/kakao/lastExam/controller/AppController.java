@@ -73,7 +73,7 @@ public class AppController {
 //            modelAndView.addObject("user", new User());
 //        }
 //        modelAndView.addAllObjects(convertObject(user));
-        System.out.println(user.getName() + "(" +user.getDescription() + ")");
+//        System.out.println(user.getName() + "(" +user.getDescription() + ")");
         DateTimeOver(comments.getContent());
 //        System.out.println(comments.get(0).getContext());
         modelAndView.addObject("comment", comments);
@@ -131,7 +131,7 @@ public class AppController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String getRegister(User user) {
+    public String getRegister(@RequestParam User user) {
         userRepository.save(user);
         return "redirect:/";
     }

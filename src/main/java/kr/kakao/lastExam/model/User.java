@@ -8,13 +8,18 @@ import java.util.List;
  * Created by JKKim on 2016. 5. 27..
  */
 @Entity
+@Table(name = "user")
 public class User implements Serializable {
     @Id
+    @Column
     private String userId;
     @Column(nullable = false)
     private String password;
+    @Column
     private String name;
+    @Column
     private String description;
+    @Column
     private String image;
     @OneToMany(mappedBy = "user")
 //    @JoinColumn(referencedColumnName = "userId")

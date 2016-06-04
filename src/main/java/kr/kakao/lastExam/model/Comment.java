@@ -12,6 +12,7 @@ import java.util.Date;
  * Created by JKKim on 2016. 5. 27..
  */
 @Entity
+@Table(name = "comment")
 public class Comment implements Serializable{
     private static final long serialVersionUID = 7170599505179953251L;
     @Id
@@ -19,12 +20,18 @@ public class Comment implements Serializable{
     @Column(name = "seq_num")
     private Integer seqNum;
     @NotNull
+    @Column
     private String writeId;
+    @Column
     private String context;
+    @Column
     private Integer recommend;
+    @Column
     private Integer opposite;
     @CreatedDate
+    @Column
     private Date create_date;
+    @Column
     private String currunt_time;
     @ManyToOne
     @JoinColumn(name = "writeId", insertable = false, updatable = false)
