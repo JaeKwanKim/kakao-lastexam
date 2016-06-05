@@ -61,7 +61,6 @@ crashlytics-build.properties
 hs_err_pid*
 # gradle
 /.gradle/
-build
 .gradle
 .idea
 out
