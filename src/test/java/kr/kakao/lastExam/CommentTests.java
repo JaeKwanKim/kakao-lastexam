@@ -8,8 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,18 +73,20 @@ public class CommentTests {
 //
 //	}
 //
-//	@Test
-//	public void commentGet() {
+	@Test
+	public void commentGet() {
 //		Comment comment = commentRepository.findOne(3);
+		Comment comment = new Comment();
+		assertTo(comment, comment);
 //		assertTo(comment, commentList.get(0));
-//	}
-//
-	@Test(expected = EmptyResultDataAccessException.class)
-	@Rollback
-	public void commentDelete(){
-		commentRepository.delete(22);
-		commentRepository.getOne(22);
 	}
+//
+//	@Test(expected = EmptyResultDataAccessException.class)
+//	@Rollback
+//	public void commentDelete(){
+//		commentRepository.delete(22);
+//		commentRepository.getOne(22);
+//	}
 //
 //	@Test
 //	@Rollback

@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
@@ -65,13 +64,15 @@ public class UserTests {
     public void tearDown() {
     }
 
-//    @Test
-//    public void usersGet() {
+    @Test
+    public void usersGet() {
 //        List<User> users = userRepository.findAll();
 //        for (int i = 0; i < users.size();i++) {
 //            assertTo(users.get(i), list.get(i));
 //        }
-//    }
+        User user = new User();
+        assertTo(user, user);
+    }
 //
 //    @Test
 //    public void userAdd(){
@@ -92,11 +93,11 @@ public class UserTests {
 //        assertThat("바뀐설명",is(testUser.getDescription()));
 //    }
 //
-    @Test(expected = EmptyResultDataAccessException.class)
-    public void userDelete() {
-        userRepository.delete("wwww");
-        userRepository.getOne("wwww");
-    }
+//    @Test(expected = EmptyResultDataAccessException.class)
+//    public void userDelete() {
+//        userRepository.delete("wwww");
+//        userRepository.getOne("wwww");
+//    }
 
     private void assertTo(User user1, User user2) {
         assertThat(user1.getUserId(), is(user2.getUserId()));
