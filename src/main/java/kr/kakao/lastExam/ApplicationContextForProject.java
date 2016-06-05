@@ -3,8 +3,6 @@ package kr.kakao.lastExam;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
@@ -27,10 +25,10 @@ public class ApplicationContextForProject extends WebMvcAutoConfiguration.WebMvc
 //        return resolver;
 //    }
 
-    @Bean
-    public JedisConnectionFactory connectionFactory() {
-        return new JedisConnectionFactory();
-    }
+//    @Bean
+//    public JedisConnectionFactory connectionFactory() {
+//        return new JedisConnectionFactory();
+//    }
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(ApplicationContextForProject.class, args);
