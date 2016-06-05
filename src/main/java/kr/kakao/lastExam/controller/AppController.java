@@ -185,7 +185,7 @@ public class AppController {
         Date crrentDate = new Date();
         for(int i = 0; i < list.size(); i++) {
             Date date = list.get(i).getCreate_date();
-            long value = (crrentDate.getTime() - date.getTime())/1000;
+            long value = ((crrentDate.getTime() - date.getTime())/1000)+32396;
             long diffDays = value / (24 * 60 * 60);
             if(diffDays >= 1) list.get(i).setCurrunt_time(diffDays+"일");
             else if (value > 3600) list.get(i).setCurrunt_time((value/3600) + "시간");
