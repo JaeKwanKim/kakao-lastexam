@@ -62,6 +62,10 @@ dependencies {
     compile "org.projectlombok:lombok:1.16.8"
 
 }
+//heroku stage build
+task stage {
+    dependsOn build
+}
 
 bootRun {
     addResources = true

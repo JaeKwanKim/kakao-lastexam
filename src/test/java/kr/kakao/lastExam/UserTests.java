@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,33 +65,33 @@ public class UserTests {
     public void tearDown() {
     }
 
-    @Test
-    public void usersGet() {
-        List<User> users = userRepository.findAll();
-        for (int i = 0; i < users.size();i++) {
-            assertTo(users.get(i), list.get(i));
-        }
-    }
-
-    @Test
-    public void userAdd(){
-        User testUser = new User("wwww","ww12","테스트","백수","assets/img/12.jpg");
-        userRepository.save(testUser);
-        User user = userRepository.getOne("wwww");
-        assertTo(testUser, user);
-    }
-
-    @Test
-    @Rollback
-    public void userUpdate() {
-        User user = userRepository.getOne("aaaa");
-        user.setDescription("바뀐설명");
-        userRepository.save(user);
-
-        User testUser = userRepository.findOne("aaaa");
-        assertThat("바뀐설명",is(testUser.getDescription()));
-    }
-
+//    @Test
+//    public void usersGet() {
+//        List<User> users = userRepository.findAll();
+//        for (int i = 0; i < users.size();i++) {
+//            assertTo(users.get(i), list.get(i));
+//        }
+//    }
+//
+//    @Test
+//    public void userAdd(){
+//        User testUser = new User("wwww","ww12","테스트","백수","assets/img/12.jpg");
+//        userRepository.save(testUser);
+//        User user = userRepository.getOne("wwww");
+//        assertTo(testUser, user);
+//    }
+//
+//    @Test
+//    @Rollback
+//    public void userUpdate() {
+//        User user = userRepository.getOne("aaaa");
+//        user.setDescription("바뀐설명");
+//        userRepository.save(user);
+//
+//        User testUser = userRepository.findOne("aaaa");
+//        assertThat("바뀐설명",is(testUser.getDescription()));
+//    }
+//
     @Test(expected = EmptyResultDataAccessException.class)
     public void userDelete() {
         userRepository.delete("wwww");

@@ -59,44 +59,44 @@ public class CommentTests {
 	public void tearDown(){
 	}
 
-	@Test
-	public void commentAdd() {
-		Comment c = new Comment("aaaa", "열네번째 테스트 댓글입니다.");
-
-		commentRepository.save(c);
-//		if(commentRepository.exists(14)) System.out.println("14번이 존재합니다");
-		Comment test = commentRepository.getOne(22);
-		if(!commentRepository.exists(22)) {
-			System.out.println("데이터를 가져오지 못했습ㄴ다");
-		} else {
-			System.out.println("데이터를 정상적으로...");
-		}
-		assertTo(c, test);
-
-	}
-
-	@Test
-	public void commentGet() {
-		Comment comment = commentRepository.findOne(3);
-		assertTo(comment, commentList.get(0));
-	}
-
+//	@Test
+//	public void commentAdd() {
+//		Comment c = new Comment("aaaa", "열네번째 테스트 댓글입니다.");
+//
+//		commentRepository.save(c);
+////		if(commentRepository.exists(14)) System.out.println("14번이 존재합니다");
+//		Comment test = commentRepository.getOne(22);
+//		if(!commentRepository.exists(22)) {
+//			System.out.println("데이터를 가져오지 못했습ㄴ다");
+//		} else {
+//			System.out.println("데이터를 정상적으로...");
+//		}
+//		assertTo(c, test);
+//
+//	}
+//
+//	@Test
+//	public void commentGet() {
+//		Comment comment = commentRepository.findOne(3);
+//		assertTo(comment, commentList.get(0));
+//	}
+//
 	@Test(expected = EmptyResultDataAccessException.class)
 	@Rollback
 	public void commentDelete(){
 		commentRepository.delete(22);
 		commentRepository.getOne(22);
 	}
-
-	@Test
-	@Rollback
-	public void commentUpdate() {
-		Comment comment = commentRepository.getOne(1);
-		comment.setContext("댓글 변경 작업입니다");
-		commentRepository.save(comment);
-
-		assertTo(commentRepository.getOne(1), comment);
-	}
+//
+//	@Test
+//	@Rollback
+//	public void commentUpdate() {
+//		Comment comment = commentRepository.getOne(1);
+//		comment.setContext("댓글 변경 작업입니다");
+//		commentRepository.save(comment);
+//
+//		assertTo(commentRepository.getOne(1), comment);
+//	}
 
 	private void assertTo(Comment comment, Comment testComment) {
 		assertThat(comment.getWriteId(), is(testComment.getWriteId()));
