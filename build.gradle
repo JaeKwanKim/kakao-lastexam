@@ -24,12 +24,12 @@ jar {
     version = '0.0.1-SNAPSHOT'
 }
 
-idea {
-    module {
-        inheritOutputDirs = false
-        outputDir = file("$buildDir/classes/main/")
-    }
-}
+//idea {
+//    module {
+//        inheritOutputDirs = false
+//        outputDir = file("$buildDir/classes/main/")
+//    }
+//}
 
 repositories {
     jcenter()

@@ -131,7 +131,7 @@ public class AppController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String getRegister(@RequestParam User user) {
+    public String getRegister(User user) {
         userRepository.save(user);
         return "redirect:/";
     }
