@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36f38b7c-573d-461f-919f-f6045ac237bc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.9/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/recommend-1.0-SNAPSHOT.tar" afterPath="$PROJECT_DIR$/build/distributions/recommend-1.0-SNAPSHOT.tar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/recommend-1.0-SNAPSHOT.zip" afterPath="$PROJECT_DIR$/build/distributions/recommend-1.0-SNAPSHOT.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/libs/recommend-0.0.1-SNAPSHOT.jar.original" afterPath="$PROJECT_DIR$/build/libs/recommend-0.0.1-SNAPSHOT.jar.original" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Procfile" afterPath="$PROJECT_DIR$/Procfile" />
     </list>
     <ignored path="recommend.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -114,7 +105,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
@@ -124,7 +115,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Procfile" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Procfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -925,7 +916,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.kakao-lastexam [jar]">
+  <component name="RunManager" selected="Gradle.kakao-lastexam [build]">
     <configuration default="false" name="kakao-lastexam [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -1697,8 +1688,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Gradle.kakao-lastexam [jar]" />
-        <item index="1" class="java.lang.String" itemvalue="Gradle.kakao-lastexam [build]" />
+        <item index="0" class="java.lang.String" itemvalue="Gradle.kakao-lastexam [build]" />
+        <item index="1" class="java.lang.String" itemvalue="Gradle.kakao-lastexam [jar]" />
         <item index="2" class="java.lang.String" itemvalue="Gradle.kakao-lastexam [bootRun]" />
         <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.index.html" />
         <item index="4" class="java.lang.String" itemvalue="Gradle.kakao-lastexam [installApp]" />
@@ -1722,7 +1713,7 @@
       <workItem from="1464328518451" duration="45511000" />
       <workItem from="1464588411017" duration="3494000" />
       <workItem from="1464593828395" duration="74229000" />
-      <workItem from="1465012909712" duration="6415000" />
+      <workItem from="1465012909712" duration="6640000" />
     </task>
     <servers />
   </component>
@@ -1759,7 +1750,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140965000" />
+    <option name="totallyTimeSpent" value="141190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="0" />
@@ -2130,14 +2121,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/kr/kakao/lastExam/CommentTests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-926">
@@ -2190,6 +2173,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="57" selection-start-line="0" selection-start-column="57" selection-end-line="0" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
           <folding />
         </state>
       </provider>
