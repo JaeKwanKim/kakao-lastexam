@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.006s</div>
+<div class="counter">0.002s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,8 +78,8 @@
 </tr>
 </thead>
 <tr>
-<td class="success">userDelete</td>
-<td>0.006s</td>
+<td class="success">usersGet</td>
+<td>0.002s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,11 +87,11 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2016-06-05 13:06:38.853  INFO 20352 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [kr.kakao.lastExam.UserTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-2016-06-05 13:06:38.855  INFO 20352 --- [    Test worker] o.s.t.c.web.WebTestContextBootstrapper   : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-2016-06-05 13:06:38.855  INFO 20352 --- [    Test worker] o.s.t.c.web.WebTestContextBootstrapper   : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6ea517e1, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@71f607cc, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@b5b4dea, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4b574728, org.springframework.test.context.transaction.TransactionalTestExecutionListener@d8b4bbc, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4c82f5a6]
-2016-06-05 13:06:38.867  INFO 20352 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@6cf8af42 testClass = UserTests, testInstance = kr.kakao.lastExam.UserTests@3bf9dfca, testMethod = userDelete@UserTests, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1d67d5c1 testClass = UserTests, locations = '{}', classes = '{class kr.kakao.lastExam.ApplicationContextForProject}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.SpringApplicationContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@6994b313]; rollback [true]
-2016-06-05 13:06:38.871  INFO 20352 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test context [DefaultTestContext@6cf8af42 testClass = UserTests, testInstance = kr.kakao.lastExam.UserTests@3bf9dfca, testMethod = userDelete@UserTests, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@1d67d5c1 testClass = UserTests, locations = '{}', classes = '{class kr.kakao.lastExam.ApplicationContextForProject}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.SpringApplicationContextLoader', parent = [null]]].
+<pre>2016-06-05 13:37:26.227  INFO 20738 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [kr.kakao.lastExam.UserTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2016-06-05 13:37:26.229  INFO 20738 --- [    Test worker] o.s.t.c.web.WebTestContextBootstrapper   : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2016-06-05 13:37:26.229  INFO 20738 --- [    Test worker] o.s.t.c.web.WebTestContextBootstrapper   : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@143234a2, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@75cf4beb, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@128c2af2, org.springframework.test.context.support.DirtiesContextTestExecutionListener@24dc5ae5, org.springframework.test.context.transaction.TransactionalTestExecutionListener@214eedf8, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2ed16a29]
+2016-06-05 13:37:26.238  INFO 20738 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Began transaction (1) for test context [DefaultTestContext@1b346c93 testClass = UserTests, testInstance = kr.kakao.lastExam.UserTests@4d436320, testMethod = usersGet@UserTests, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@5df90ebb testClass = UserTests, locations = '{}', classes = '{class kr.kakao.lastExam.ApplicationContextForProject}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.SpringApplicationContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@1c0be056]; rollback [true]
+2016-06-05 13:37:26.239  INFO 20738 --- [    Test worker] o.s.t.c.transaction.TransactionContext   : Rolled back transaction for test context [DefaultTestContext@1b346c93 testClass = UserTests, testInstance = kr.kakao.lastExam.UserTests@4d436320, testMethod = usersGet@UserTests, testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@5df90ebb testClass = UserTests, locations = '{}', classes = '{class kr.kakao.lastExam.ApplicationContextForProject}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.SpringApplicationContextLoader', parent = [null]]].
 </pre>
 </span>
 </div>
@@ -103,7 +103,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 2.9</a> at 2016. 6. 5 오후 1:06:38</p>
+<a href="http://www.gradle.org">Gradle 2.9</a> at 2016. 6. 5 오후 1:37:26</p>
 </div>
 </div>
 </body>
