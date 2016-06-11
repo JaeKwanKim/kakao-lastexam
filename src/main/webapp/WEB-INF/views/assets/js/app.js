@@ -8,8 +8,11 @@ function writeOpen(){
 
 function loginOpen(){
 	var popUrl = "login";
-	var popOption = "width=300, height=280, resizable=no, scrollbars=no, status=no;";
+	var popOption = "width=320, height=360, resizable=no, scrollbars=no, status=no, directories=yes;";
 	window.open(popUrl,"",popOption);
+	// $('div.modal-content').modal({
+	// 	remote: 'login.html'
+	// });
 }
 
 $(".comment-delete-class").on("click", function() {

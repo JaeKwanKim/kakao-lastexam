@@ -15,16 +15,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by JKKim on 2016. 5. 27..
@@ -33,12 +36,13 @@ import java.util.List;
 @SessionAttributes(names = {"user"})
 public class AppController {
     private final static Logger logger = LoggerFactory.getLogger(AppController.class);
+    private String ROOT = "src/main/webapp/WEB-INF/views/assets/img/";
 
     @Autowired
     private CommentRepository commentRepository;
     @Autowired
     private UserRepository userRepository;
-//    private static final ObjectMapper om = new ObjectMapper();
+
     private int pageNum;
 
     public int getPageNum() {
@@ -78,8 +82,8 @@ public class AppController {
 //        System.out.println(comments.get(0).getContext());
         modelAndView.addObject("comment", comments);
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("index");
         modelAndView.addObject("pageNum", comments.getTotalPages());
+        modelAndView.setViewName("index");
 //        model.addAllAttributes(convertObject(user));
         return modelAndView;
     }
@@ -99,9 +103,10 @@ public class AppController {
                 model.addAttribute("user", user);
                 writer.println("<script>window.opener.location.reload(); self.close(); </script>");
             } else {
-                writer.println("<script>alert('Password Incorrect!! Rewrite that.'); location.href='/login';</script>");
+                writer.println("<script>window.opener.alert('Password Incorrect!! Rewrite that.'); location.href='/login';</script>");
             }
         } catch (EntityNotFoundException e) {
+            model.addAttribute("errmessage", "아이디/패스워드 입력이 잘못되었습니다");
         }
     }
 
@@ -131,8 +136,41 @@ public class AppController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String getRegister(User user) {
-        userRepository.save(user);
+    public String getRegister(@RequestParam Map user,
+                              @RequestParam("image") MultipartFile image,
+                              RedirectAttributes redirectAttributes, Model model) {
+
+        User user1 = new User();
+        user1.setPassword((String) user.get("password"));
+        user1.setDescription((String) user.get("description"));
+        user1.setName((String) user.get("name"));
+        user1.setUserId((String) user.get("userId"));
+        user1.setImage(image.getOriginalFilename());
+        userRepository.save(user1);
+
+        model.addAttribute("user", userRepository.getOne(user1.getUserId()));
+
+        if (!image.isEmpty()) {
+            try {
+                BufferedOutputStream stream = new BufferedOutputStream(
+                        new FileOutputStream(new File(ROOT + image.getOriginalFilename())));
+//            stream.write(image.getBytes());
+                FileCopyUtils.copy(image.getInputStream(), stream);
+                stream.close();
+//                redirectAttributes.addFlashAttribute("message",
+//                        "You successfully uploaded " + user.getImage() + "!");
+            }
+            catch (IOException e) {
+                redirectAttributes.addFlashAttribute("message",
+                        "You failed to upload " + user1.getImage() + " => " + e.getMessage());
+                System.out.println("files is upload failed");
+            }
+        }
+        else {
+            redirectAttributes.addFlashAttribute("message",
+                    "You failed to upload " + user1.getImage() + " because the image was empty");
+            System.out.println("file is empty!!");
+        }
         return "redirect:/";
     }
 
@@ -174,7 +212,6 @@ public class AppController {
         commentRepository.save(commentUnlike);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
     @RequestMapping(value = "/pageNum", method = RequestMethod.GET)
     public ResponseEntity<?> pageNum(@RequestParam(name = "pageNum") int pageNum) {
         setPageNum(pageNum);
@@ -185,7 +222,7 @@ public class AppController {
         Date crrentDate = new Date();
         for(int i = 0; i < list.size(); i++) {
             Date date = list.get(i).getCreate_date();
-            long value = ((crrentDate.getTime() - date.getTime())/1000)+32396;
+            long value = ((crrentDate.getTime() - date.getTime())/1000);
             long diffDays = value / (24 * 60 * 60);
             if(diffDays >= 1) list.get(i).setCurrunt_time(diffDays+"일");
             else if (value > 3600) list.get(i).setCurrunt_time((value/3600) + "시간");
@@ -194,16 +231,9 @@ public class AppController {
         }
         commentRepository.save(list);
     }
+
+
 //    public static String convertObjectToJson(Object obj) {
 
-//    private ModelMap convertObject(User user) {
-//        ModelMap modelMap = new ModelMap();
-//        modelMap.addAttribute("writeId", user.getUserId());
-//        modelMap.addAttribute("password", user.getPassword());
-//        modelMap.addAttribute("name", user.getName());
-//        modelMap.addAttribute("description", user.getDescription());
-//        modelMap.addAttribute("image", user.getImage());
-//        modelMap.addAttribute("user_comments", user.getComments());
-//        return modelMap;
 //    }
 }

@@ -15,7 +15,10 @@
         <li id="nav-login-display" th:text="${user.name}+'('+${user.description}+')'"></li>
         <li id="nav-login-profile-change" ><a href="/register">프로필수정 </a></li>
         <li id="nav-login-logout" ><a href="/logout">로그아웃 </a></li>
-        <li id="nav-login"><a href="javascript:loginOpen();">로그인 </a></li>
+        <li id="nav-login"><a href="javascript:loginOpen()" id="nav-login-href">로그인 </a></li>
+        <div class="modal-content">
+            <!-- remote ajax call이 되는영역 -->
+        </div>
         <li><a href="javascript:writeOpen();"> 글쓰기</a></li>
     </ul>
     <div id="header">
@@ -30,7 +33,7 @@
                     <tr class="comment_table" th:each="com : ${comment}">
                         <td class="image"><img th:src="${com.user.image}" width="50px" height="50px"/></td>
                         <td class="name">
-                            <label th:text="${com.user.name}">김재관 </label>
+                            <label th:text="${com.user.name}">이름 </label>
                         </td>
                         <td class="context" th:text="${com.context}">댓글 입력 장소입니다.</td>
                             <!--<input type="hidden" id="comment-writeId" th:text="${com.seqNum}" />-->

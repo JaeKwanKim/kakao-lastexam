@@ -68,12 +68,12 @@ tbody{
 div#image-call.col-sm-4.input-column{
   display:table-column;
   table-layout:auto;
-  width:250px;
+  width:300px;
 }
 
 img#profile-image{
-  float:left;
-  display:block;
+  /*float:left;*/
+  /*display:block;*/
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #fff;
@@ -143,6 +143,7 @@ button.btn.btn-default.login-button{
 }
 
 div#login-div-button{
+  margin-left:30px;
 }
 
 button.btn.btn-default.comment-button{
@@ -220,3 +221,11 @@ li#nav-login-display{
   width: 100% \9;
   height: auto;
 }
+
+#modal_content{
+  display:none;
+  margin:auto;
+  width:320px;
+  height:330px;
+  background:whitesmoke;
+  color:#fff}
